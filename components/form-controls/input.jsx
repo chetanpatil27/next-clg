@@ -20,7 +20,10 @@ const Input = ({
       : "";
   return (
     <div>
-      <label htmlFor={name} className="block text-sm font-medium text-gray-900">
+      <label
+        htmlFor={name}
+        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+      >
         {label}
       </label>
       <div className="mt-2">
@@ -39,7 +42,7 @@ const Input = ({
                 field?.onChange(e);
               }}
               autoComplete={autoComplete}
-              className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm"
+              className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             />
           )}
         />
