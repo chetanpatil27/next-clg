@@ -1,20 +1,20 @@
 import { NextResponse } from "next/server";
 
 export function middleware(req) {
-  console.log("Middleware running...");
-
   const token = req.cookies.get("authToken");
-  console.log("Token in middleware:", token);
+  const pathname = req.nextUrl.pathname;
 
-  if (!token) {
-    console.log("Redirecting to /login...");
+  if (token && pathname === "/login") {
+    return NextResponse.redirect(new URL("/", req.url));
+  }
+
+  if (!token && pathname !== "/login") {
     return NextResponse.redirect(new URL("/login", req.url));
   }
 
-  console.log("Token found, allowing access.");
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/"], // Ensure this path exists in pages folder
+  matcher: ["/", "/login"],
 };

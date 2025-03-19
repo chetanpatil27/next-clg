@@ -1,11 +1,8 @@
 "use client";
 import React from "react";
-import Input from "@/components/form-controls/input";
-import { useForm } from "react-hook-form";
-import Button from "@/components/form-controls/button";
+import LoginForm from "@/forms/login";
 
 const page = () => {
-  const { control } = useForm();
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -16,12 +13,7 @@ const page = () => {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form action="#" method="POST" className="space-y-6">
-            <Input control={control} name="email" />
-            <Input control={control} name="password" type="password" />
-
-            <Button title="Sign In" color="primary" fullSize />
-          </form>
+          <LoginForm />
         </div>
       </div>
     </>

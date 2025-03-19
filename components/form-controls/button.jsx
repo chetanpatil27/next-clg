@@ -9,6 +9,7 @@ const Button = ({
   variant = "primary",
   className = "",
   fullSize = false,
+  type = "button",
 }) => {
   const baseStyles =
     "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300";
@@ -23,7 +24,9 @@ const Button = ({
 
   return (
     <button
+      type={type}
       className={classNames(
+        "cursor-pointer",
         baseStyles,
         variants[variant],
         className,
