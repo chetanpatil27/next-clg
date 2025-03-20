@@ -25,7 +25,7 @@ export async function POST(req) {
     // ✅ Check for missing fields
     if (!name || !email || !password) {
       return NextResponse.json(
-        { message: "All fields are required" },
+        { message: "All fields are required", status: 400 },
         { status: 400 }
       );
     }
@@ -34,7 +34,7 @@ export async function POST(req) {
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return NextResponse.json(
-        { message: "User already exists" },
+        { message: "User already exists", status: 400 },
         { status: 400 }
       );
     }
@@ -53,11 +53,15 @@ export async function POST(req) {
       {
         message: "User registered successfully",
         user: { id: newUser._id, name, email },
+        status: 201,
       },
       { status: 201 }
     );
   } catch (error) {
     console.error("Registration Error:", error);
-    return NextResponse.json({ message: "Server Error" }, { status: 500 });
+    return NextResponse.json(
+      { message: "Server Error", status: 500 },
+      { status: 500 }
+    );
   }
 }

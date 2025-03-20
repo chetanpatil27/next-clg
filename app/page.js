@@ -1,6 +1,5 @@
-import AppLayout from "@/components/layout";
-import Sidebar from "@/components/layout/sidebar";
 import React from "react";
+import AppLayout from "@/components/layout";
 export default function Home() {
   return (
     <>

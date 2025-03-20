@@ -10,6 +10,7 @@ const Button = ({
   className = "",
   fullSize = false,
   type = "button",
+  loading,
 }) => {
   const baseStyles =
     "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300";
@@ -34,7 +35,7 @@ const Button = ({
       )}
       onClick={onClick}
     >
-      {title}
+      {loading ? "loading....." : title}
     </button>
   );
 };
