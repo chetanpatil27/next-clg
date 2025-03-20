@@ -3,6 +3,8 @@ import dispatchAction from "../helper/dispatch-action";
 import { useSelector } from "react-redux";
 const initialState = {
   registerUserLoaing: false,
+  data: [],
+  loading: false,
 };
 const userSlice = createSlice({
   name: "user",
@@ -37,6 +39,20 @@ export const registerUser =
       dispatchSetLoading: false,
     });
   };
+
+export const getAllUsers = () => async (dispatch) => {
+  return dispatchAction({
+    method: "GET",
+    endpoint: "user",
+    onSuccess: (data) => {
+      dispatch(setUserState({ data: data?.data?.data }));
+      return data;
+    },
+    showError: false,
+    showSuccess: false,
+    dispatchSetLoading: false,
+  });
+};
 
 export const useUserStore = () => {
   return useSelector((state) => state.user) || {};

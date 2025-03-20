@@ -7,12 +7,8 @@ const Sidebar = () => {
 
   const menuItems = [
     { label: "Dashboard", href: "#" },
+    { label: "Users", href: "/users" },
     { label: "Create User", href: "/create-user" },
-    { label: "Inbox", href: "#" },
-    { label: "Users", href: "#" },
-    { label: "Products", href: "#" },
-    { label: "Sign In", href: "#" },
-    { label: "Sign Up", href: "#" },
   ];
 
   return (
