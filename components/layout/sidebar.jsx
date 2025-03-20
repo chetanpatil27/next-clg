@@ -9,6 +9,7 @@ const Sidebar = () => {
     { label: "Dashboard", href: "#" },
     { label: "Users", href: "/users" },
     { label: "Create User", href: "/create-user" },
+    { label: "Profile", href: "/profile" },
   ];
 
   return (

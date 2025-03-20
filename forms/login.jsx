@@ -6,8 +6,9 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch } from "react-redux";
-import { handleLogin, useAuthStore } from "@/store/slice/auth";
+import { getProfile, handleLogin, useAuthStore } from "@/store/slice/auth";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const schema = yup.object({
   email: yup.string().required("Username is required"),
@@ -15,6 +16,7 @@ const schema = yup.object({
 });
 
 const LoginForm = () => {
+  const router = useRouter();
   const authS = useAuthStore();
   console.log("authS", authS);
   const {
@@ -24,14 +26,12 @@ const LoginForm = () => {
   } = useForm({ resolver: yupResolver(schema) });
   const dispatch = useDispatch();
   const onSubmit = async (data) => {
-    console.log("submit data", data);
     const res = await dispatch(handleLogin({ payload: data }));
-    console.log("res", res);
     if (res?.status === 401) {
       toast.error(res?.message);
     } else if (res?.data?.data?.status === 200) {
-      console.log("at reload");
-      window.location.reload();
+      dispatch(getProfile({ params: { userId: res?.data?.data?.user?._id } }));
+      router.push("/");
     }
   };
   return (
